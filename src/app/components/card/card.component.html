@@ -1,0 +1,9 @@
+@if(course()){
+
+<div class="course-card">
+  <div class="course-title">{{ course().description }}</div>
+  <img [src]="course().iconUrl" />
+  <div class="course-description">{{ course().longDescription }}</div>
+  <button (click)="courseView(course().id)">Click</button>
+</div>
+}
