@@ -17,9 +17,7 @@ export class HightlightedDirective {
 
   onClickDirective = output<string>();
 
-  constructor() {
-    console.log("HightlightedDirective");
-  }
+  constructor() {}
   @HostBinding("class.hightlighted")
   get cssClasses() {
     return this.isHighlighted;

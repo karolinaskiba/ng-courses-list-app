@@ -24,6 +24,8 @@ import { HightlightedDirective } from "../../directives/hightlighted.directive";
 export class CardComponent {
   course = input<Course>();
   onCourseView = output<number>();
+  courseEmitter = output<Course>();
+
   isHighlighted = signal<boolean>(false);
 
   @ContentChild(CourseImageComponent, { read: ElementRef })
@@ -48,5 +50,8 @@ export class CardComponent {
       advanced: this.course().category === "ADVANCED",
       intermediate: this.course().category === "INTERMEDIATE",
     };
+  }
+  onSaveClicked(description: string) {
+    this.courseEmitter.emit({ ...this.course(), description: description });
   }
 }

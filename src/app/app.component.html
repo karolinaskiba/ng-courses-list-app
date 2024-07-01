@@ -9,7 +9,11 @@
 
 <div class="courses">
   @for (cor of coreCourse; track $index; let index= $index) {
-  <card [course]="cor" (onCourseView)="onCourseView($event)">
+  <card
+    [course]="cor"
+    (onCourseView)="onCourseView($event)"
+    (courseEmitter)="save($event)"
+  >
     lessonsCount {{ cor.lessonsCount }}
     <div class="footer-card">
       footer card

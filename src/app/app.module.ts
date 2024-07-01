@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CardComponent } from "./components/card/card.component";
 import { CourseImageComponent } from "./components/course-image/course-image.component";
 import { LikeMethodUseDirective } from "./directives/like-method-use.directive";
+import { HttpClientModule } from "@angular/common/http";
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -14,6 +15,7 @@ import { LikeMethodUseDirective } from "./directives/like-method-use.directive";
     CardComponent,
     CourseImageComponent,
     LikeMethodUseDirective,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

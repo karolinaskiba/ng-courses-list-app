@@ -6,10 +6,15 @@ import {
   ElementRef,
   ViewChild,
   ContentChild,
+  inject,
 } from "@angular/core";
 import { COURSES } from "../db-data";
 import { CardComponent } from "./components/card/card.component";
 import { CourseImageComponent } from "./components/course-image/course-image.component";
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Observable } from "rxjs";
+import { Course } from "./model/course";
+import { CorsesService } from "./services/corses.service";
 
 @Component({
   selector: "app-root",
@@ -17,7 +22,20 @@ import { CourseImageComponent } from "./components/course-image/course-image.com
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  coreCourse = COURSES;
+  coreCourse;
+
+  private corsesService = inject(CorsesService);
+
+  ngOnInit(): void {
+    this.corsesService.gatData().subscribe(
+      (data: { payload: Course[] }) => {
+        this.coreCourse = data.payload;
+      },
+      (error) => {
+        console.error("Wystąpił błąd:", error);
+      }
+    );
+  }
 
   @ViewChildren(CardComponent)
   cards: QueryList<CardComponent>;
@@ -59,6 +77,11 @@ export class AppComponent {
 
     this.cards.changes.subscribe((cards) => {
       console.log(cards);
+    });
+  }
+  save(corse: Course) {
+    this.corsesService.saveCors(corse).subscribe(() => {
+      console.log("stet");
     });
   }
 }
