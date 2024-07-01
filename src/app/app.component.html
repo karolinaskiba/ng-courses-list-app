@@ -5,9 +5,24 @@
   />
 </div>
 
-<div class="courses">
-  @for (cor of coreCourse; track $index) {
-  <card [course]="cor" (onCourseView)="onCourseView($event)" />
+<button (click)="addNew()">add new course</button>
 
+<div class="courses">
+  @for (cor of coreCourse; track $index; let index= $index) {
+  <card [course]="cor" (onCourseView)="onCourseView($event)">
+    lessonsCount {{ cor.lessonsCount }}
+    <div class="footer-card">
+      footer card
+      <div #childElement>Content Child</div>
+    </div>
+
+    <course-image
+      [iconUrl]="cor.iconUrl"
+      [iconUrlDesc]="cor.iconUrlDesc"
+    ></course-image>
+  </card>
+
+  } @empty{
+  <h2>No courses exists</h2>
   }
 </div>

@@ -1,9 +1,37 @@
 @if(course()){
 
-<div class="course-card">
-  <div class="course-title">{{ course().description }}</div>
-  <img [src]="course().iconUrl" />
+<div class="course-card" [ngClass]="getSomeClass()">
+  <ng-content></ng-content>
+
+  <div
+    class="course-title"
+    [hightlighted]="isHighlighted()"
+    (onClickDirective)="onClickDirective($event)"
+  >
+    {{ course().description | titlecase }}
+  </div>
+  @if(course().iconUrl ){
+  <ng-content select="course-image"></ng-content>
+
+  }@else{
+  <p>No image available</p>
+  <img src="../../../assets/empty-image.png" alt="ee" />
+  }
+
+  <div>
+    @switch (course().category) { @case ('BEGINNER') {
+    <span>Beginner</span>
+    } @case ('ADVANCED') {
+    <span>Advanced</span>
+    } @case ('INTERMEDIATE') {
+    <span>Intermediate</span>
+    } @default {
+    <span>Uncategorise</span>
+    } }
+  </div>
+
   <div class="course-description">{{ course().longDescription }}</div>
+
   <button (click)="courseView(course().id)">Click</button>
 </div>
 }
