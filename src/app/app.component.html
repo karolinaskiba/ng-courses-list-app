@@ -4,11 +4,13 @@
     src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png"
   />
 </div>
-
-<button (click)="addNew()">add new course</button>
+<div class="text-center">
+  <button (click)="addNew()">Add new course</button>
+</div>
 
 <div class="courses">
-  @for (cor of coreCourse; track $index; let index= $index) {
+  @for (cor of coreCourse | filterByCategory : "beginner"; track $index; let
+  index= $index) {
   <card
     [course]="cor"
     (onCourseView)="onCourseView($event)"
@@ -30,3 +32,8 @@
   <h2>No courses exists</h2>
   }
 </div>
+<style>
+  .text-center {
+    text-align: center;
+  }
+</style>

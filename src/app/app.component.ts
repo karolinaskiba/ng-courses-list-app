@@ -9,8 +9,8 @@ import {
   inject,
 } from "@angular/core";
 import { COURSES } from "../db-data";
-import { CardComponent } from "./components/card/card.component";
-import { CourseImageComponent } from "./components/course-image/course-image.component";
+import { CardComponent } from "./courses/card/card.component";
+import { CourseImageComponent } from "./courses/course-image/course-image.component";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Course } from "./model/course";
