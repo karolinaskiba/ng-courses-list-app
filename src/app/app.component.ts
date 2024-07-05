@@ -7,6 +7,7 @@ import {
   ViewChild,
   ContentChild,
   inject,
+  Injector,
 } from "@angular/core";
 import { COURSES } from "../db-data";
 import { CardComponent } from "./courses/card/card.component";
@@ -16,6 +17,8 @@ import { Observable } from "rxjs";
 import { Course } from "./model/course";
 import { CorsesService } from "./services/corses.service";
 import { TranslateService } from "@ngx-translate/core";
+import { createCustomElement } from "@angular/elements";
+import { CourseTitleComponent } from "./components/course-title/course-title.component";
 
 @Component({
   selector: "app-root",
@@ -27,6 +30,7 @@ export class AppComponent {
   coursesTotal = 10;
   private corsesService = inject(CorsesService);
   private translate = inject(TranslateService);
+  private inj = inject(Injector);
 
   ngOnInit(): void {
     this.corsesService.gatData().subscribe(
@@ -38,6 +42,11 @@ export class AppComponent {
         console.error("Wystąpił błąd:", error);
       }
     );
+
+    const htmlElement = createCustomElement(CourseTitleComponent, {
+      injector: this.inj,
+    });
+    customElements.define("course-title", htmlElement);
   }
 
   @ViewChildren(CardComponent)

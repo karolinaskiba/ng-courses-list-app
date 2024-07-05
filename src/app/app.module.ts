@@ -10,6 +10,7 @@ import { HttpClientModule, HttpClient } from "@angular/common/http";
 import { CoursesModule } from "./courses/courses.module";
 import { TranslateModule, TranslateLoader } from "@ngx-translate/core";
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
+import { CourseTitleComponent } from "./components/course-title/course-title.component";
 
 // Function to create TranslateHttpLoader
 export function HttpLoaderFactory(http: HttpClient) {
@@ -20,7 +21,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-
+    CourseTitleComponent,
     LikeMethodUseDirective,
     HttpClientModule,
     CoursesModule,
