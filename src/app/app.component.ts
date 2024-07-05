@@ -16,14 +16,24 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Course } from "./model/course";
 import { CorsesService } from "./services/corses.service";
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateModule, TranslateService } from "@ngx-translate/core";
 import { createCustomElement } from "@angular/elements";
 import { CourseTitleComponent } from "./components/course-title/course-title.component";
+import { CoursesModule } from "./courses/courses.module";
+import { CommonModule } from "@angular/common";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"],
+  standalone: true,
+  imports: [
+    CoursesModule,
+    CardComponent,
+    CourseImageComponent,
+    TranslateModule,
+    CommonModule,
+  ],
 })
 export class AppComponent {
   coreCourse;

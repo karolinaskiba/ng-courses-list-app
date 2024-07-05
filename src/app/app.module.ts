@@ -17,7 +17,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
 @NgModule({
-  declarations: [AppComponent],
+  //declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -25,6 +25,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     LikeMethodUseDirective,
     HttpClientModule,
     CoursesModule,
+    CardComponent,
+    CourseImageComponent,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -34,6 +36,6 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
   ],
   providers: [],
-  bootstrap: [AppComponent],
+  // bootstrap: [AppComponent],
 })
 export class AppModule {}

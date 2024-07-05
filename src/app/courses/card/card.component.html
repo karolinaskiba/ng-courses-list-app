@@ -2,7 +2,7 @@
 
 <div class="course-card" [ngClass]="getSomeClass()">
   <ng-content></ng-content>
-
+  <course-title [title]="course().description"></course-title>
   <div
     class="course-title"
     [hightlighted]="isHighlighted()"

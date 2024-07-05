@@ -6,12 +6,7 @@ import { FilterByCategoryPipe } from "../pipes/filter-by-category.pipe";
 
 @NgModule({
   declarations: [],
-  imports: [
-    CommonModule,
-    CardComponent,
-    CourseImageComponent,
-    FilterByCategoryPipe,
-  ],
-  exports: [CardComponent, CourseImageComponent, FilterByCategoryPipe],
+  imports: [],
+  exports: [],
 })
 export class CoursesModule {}
