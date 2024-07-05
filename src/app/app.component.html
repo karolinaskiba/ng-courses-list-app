@@ -5,12 +5,20 @@
   />
 </div>
 <div class="text-center">
-  <button (click)="addNew()">Add new course</button>
+  <h2 i18n>{{ "Welcone to the Angular" | translate }}</h2>
+  <div i18n>
+    {coursesTotal, plural, =0 {Brak dostępnych kursów}, =1 {Dostępny jest jeden
+    kurs}, other {Dostępnych jest {{ coursesTotal }} kursów} }
+  </div>
+  <div>
+    <button (click)="switchLanguage('en')">English</button>
+    <button (click)="switchLanguage('pl')">Polski</button>
+  </div>
+  <button (click)="addNew()" i18n>Add new course</button>
 </div>
 
 <div class="courses">
-  @for (cor of coreCourse | filterByCategory : "beginner"; track $index; let
-  index= $index) {
+  @for (cor of coreCourse; track $index; let index= $index) {
   <card
     [course]="cor"
     (onCourseView)="onCourseView($event)"

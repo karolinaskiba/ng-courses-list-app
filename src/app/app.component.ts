@@ -15,6 +15,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Course } from "./model/course";
 import { CorsesService } from "./services/corses.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-root",
@@ -23,13 +24,15 @@ import { CorsesService } from "./services/corses.service";
 })
 export class AppComponent {
   coreCourse;
-
+  coursesTotal = 10;
   private corsesService = inject(CorsesService);
+  private translate = inject(TranslateService);
 
   ngOnInit(): void {
     this.corsesService.gatData().subscribe(
       (data: { payload: Course[] }) => {
         this.coreCourse = data.payload;
+        this.coursesTotal = data.payload.length;
       },
       (error) => {
         console.error("Wystąpił błąd:", error);
@@ -73,7 +76,6 @@ export class AppComponent {
     } else {
       console.log("Element child nie został znaleziony");
     }
-    console.log("ngAfterViewInit", this.cards.first.course());
 
     this.cards.changes.subscribe((cards) => {
       console.log(cards);
@@ -83,5 +85,9 @@ export class AppComponent {
     this.corsesService.saveCors(corse).subscribe(() => {
       console.log("stet");
     });
+  }
+
+  switchLanguage(language: string) {
+    this.translate.use(language);
   }
 }
